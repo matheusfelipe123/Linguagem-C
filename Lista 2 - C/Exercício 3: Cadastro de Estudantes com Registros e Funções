@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+
+// Definindo a struct para armazenar os dados dos estudantes
+struct Estudante {
+    char nome[50];
+    int idade;
+    float nota;
+};
+
+// Função para cadastrar estudantes
+void cadastraEstudantes(struct Estudante estudantes[], int *numEstudantes) {
+    for (int i = 0; i < *numEstudantes; i++) {
+        printf("\nCadastro do estudante %d:\n", i + 1);
+        printf("Nome: ");
+        scanf(" %[^\n]", estudantes[i].nome);  // Lê nome com espaços
+        printf("Idade: ");
+        scanf("%d", &estudantes[i].idade);
+        printf("Nota final: ");
+        scanf("%f", &estudantes[i].nota);
+    }
+}
+
+// Função para exibir estudantes com nota >= 7
+void exibeAprovados(struct Estudante estudantes[], int numEstudantes) {
+    printf("\nEstudantes com nota maior ou igual a 7:\n");
+    int aprovados = 0;
+    for (int i = 0; i < numEstudantes; i++) {
+        if (estudantes[i].nota >= 7.0) {
+            printf("Nome: %s, Idade: %d, Nota: %.2f\n", estudantes[i].nome, estudantes[i].idade, estudantes[i].nota);
+            aprovados++;
+        }
+    }
+    if (aprovados == 0) {
+        printf("Nenhum estudante aprovado.\n");
+    }
+}
+
+// Função para calcular a média das notas dos estudantes
+float calculaMedia(struct Estudante estudantes[], int numEstudantes) {
+    float soma = 0;
+    for (int i = 0; i < numEstudantes; i++) {
+        soma += estudantes[i].nota;
+    }
+    return soma / numEstudantes;
+}
+
+// Função principal
+int main() {
+    struct Estudante estudantes[5];
+    int numEstudantes;
+
+    printf("Digite o número de estudantes (até 5): ");
+    scanf("%d", &numEstudantes);
+
+    if (numEstudantes < 1 || numEstudantes > 5) {
+        printf("Erro: o número de estudantes deve estar entre 1 e 5.\n");
+        return 1;
+    }
+
+    cadastraEstudantes(estudantes, &numEstudantes);
+
+    // Exibe os estudantes aprovados
+    exibeAprovados(estudantes, numEstudantes);
+
+    // Calcula e exibe a média das notas
+    float media = calculaMedia(estudantes, numEstudantes);
+    printf("\nMédia das notas: %.2f\n", media);
+
+    return 0;
+}
