@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+// Funções para cada operação
+int soma(int a, int b) {
+    return a + b;
+}
+
+int subtracao(int a, int b) {
+    return a - b;
+}
+
+int multiplicacao(int a, int b) {
+    return a * b;
+}
+
+float divisao(int a, int b) {
+    if (b == 0) {
+        printf("Erro: divisão por zero!\n");
+        return 0;
+    }
+    return (float)a / b;
+}
+
+// Função para verificar se ambos os números são positivos
+int verificaPositivos(int a, int b) {
+    return (a > 0 && b > 0);
+}
+
+// Função principal
+int main() {
+    int num1, num2;
+    char operacao;
+
+    // Solicita ao usuário dois números inteiros
+    printf("Digite o primeiro número inteiro positivo: ");
+    scanf("%d", &num1);
+    printf("Digite o segundo número inteiro positivo: ");
+    scanf("%d", &num2);
+
+    // Verifica se ambos os números são positivos
+    if (!verificaPositivos(num1, num2)) {
+        printf("Erro: ambos os números devem ser positivos!\n");
+        return 1;
+    }
+
+    // Solicita ao usuário uma operação
+    printf("Digite a operação desejada (+, -, *, /): ");
+    scanf(" %c", &operacao);
+
+    // Realiza a operação com base na entrada do usuário
+    switch (operacao) {
+        case '+':
+            printf("Resultado: %d\n", soma(num1, num2));
+            break;
+        case '-':
+            printf("Resultado: %d\n", subtracao(num1, num2));
+            break;
+        case '*':
+            printf("Resultado: %d\n", multiplicacao(num1, num2));
+            break;
+        case '/':
+            printf("Resultado: %.2f\n", divisao(num1, num2));
+            break;
+        default:
+            printf("Erro: operação inválida!\n");
+    }
+
+    return 0;
+}
