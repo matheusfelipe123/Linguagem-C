@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Função para validar se a string contém apenas dígitos numéricos
+int validaNumeros(char cpf[]) {
+    for (int i = 0; i < 9; i++) {
+        if (!isdigit(cpf[i])) {
+            return 0; // Retorna 0 se algum caractere não for numérico
+        }
+    }
+    return 1; // Retorna 1 se todos os caracteres são numéricos
+}
+
+// Função para calcular o primeiro dígito verificador
+int calculaPrimeiroDigito(char cpf[]) {
+    int soma = 0;
+    for (int i = 0; i < 9; i++) {
+        soma += (cpf[i] - '0') * (10 - i); // Convertendo caractere para número
+    }
+    int resto = (soma * 10) % 11;
+    return (resto == 10) ? 0 : resto;
+}
+
+// Função para calcular o segundo dígito verificador
+int calculaSegundoDigito(char cpf[]) {
+    int soma = 0;
+    for (int i = 0; i < 9; i++) {
+        soma += (cpf[i] - '0') * (11 - i); // Convertendo caractere para número
+    }
+    soma += calculaPrimeiroDigito(cpf) * 2;
+    int resto = (soma * 10) % 11;
+    return (resto == 10) ? 0 : resto;
+}
+
+// Função principal
+int main() {
+    char cpf[10]; // 9 dígitos + caractere nulo
+    printf("Digite os 9 primeiros dígitos do CPF: ");
+    scanf("%9s", cpf);
+
+    // Validação de entrada
+    if (strlen(cpf) != 9 || !validaNumeros(cpf)) {
+        printf("Erro: CPF inválido. Insira exatamente 9 dígitos numéricos.\n");
+        return 1;
+    }
+
+    // Calcula os dígitos verificadores
+    int primeiroDigito = calculaPrimeiroDigito(cpf);
+    int segundoDigito = calculaSegundoDigito(cpf);
+
+    // Exibe o CPF completo com os dígitos verificadores
+    printf("CPF completo: %s-%d%d\n", cpf, primeiroDigito, segundoDigito);
+
+    return 0;
+}
