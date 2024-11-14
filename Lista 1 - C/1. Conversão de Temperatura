@@ -1,1 +1,28 @@
-sd
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main() {
+    float celsius, fahrenheit;
+    char input[50];
+
+    // Solicita ao usuário para inserir a temperatura em Celsius
+    printf("Insira a temperatura em Celsius: ");
+    scanf("%s", input);
+
+    // Tenta converter a entrada para um número
+    char *endptr;
+    celsius = strtof(input, &endptr);
+
+    // Verifica se a conversão foi bem-sucedida e se a entrada é um número válido
+    if (*endptr != '\0') {
+        printf("Erro: entrada inválida. Por favor, insira um número.\n");
+    } else {
+        // Realiza a conversão para Fahrenheit
+        fahrenheit = (celsius * 9 / 5) + 32;
+        printf("%.2f graus Celsius é igual a %.2f graus Fahrenheit.\n", celsius, fahrenheit);
+    }
+
+    return 0;
+}
+
