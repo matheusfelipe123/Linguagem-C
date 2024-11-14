@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int numeros[5];
+    int soma = 0, count = 0;
+    float media;
+
+    // Preenchendo o vetor com números inteiros positivos
+    for (int i = 0; i < 5; i++) {
+        int numero;
+        
+        // Solicita um número positivo
+        printf("Insira um número inteiro positivo para o elemento %d: ", i + 1);
+        scanf("%d", &numero);
+
+        // Verifica se o número é positivo
+        while (numero <= 0) {
+            printf("Número inválido. Insira um número inteiro positivo: ");
+            scanf("%d", &numero);
+        }
+
+        // Adiciona o número ao vetor e à soma
+        numeros[i] = numero;
+        soma += numero;
+        count++;
+    }
+
+    // Calcula a média dos números
+    media = (float)soma / count;
+
+    // Exibe a soma e a média dos números
+    printf("Soma dos números: %d\n", soma);
+    printf("Média dos números: %.2f\n", media);
+
+    return 0;
+}
+
