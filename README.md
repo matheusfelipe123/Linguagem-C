@@ -13,3 +13,5 @@ Esse repositorio sera utilizado para fins Educacionais é aprendizado de C no ge
 - Add de trabalhos
 - Uso de forma no geral para aprendizado e possivelmente Trabalhos
 - Multiplataforma
+
+![gif](https://media.lordicon.com/icons/wired/outline/1324-c-code-language.gif)
